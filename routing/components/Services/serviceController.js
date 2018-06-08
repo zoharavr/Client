@@ -4,17 +4,19 @@ angular.module('citiesApp')
     // .service('myService', function () { this.set = function() {return "hello"} })
     .service('setHeadersToken',[ '$http', function ($http) {
 
-        let token = ""
+        self.token = ""
 
-        this.set = function (t) {
-            token = t
-            $http.defaults.headers.common[ 'x-access-token' ] = t
+        self.set = function (t) {
+            self.token = t;
+            $http.defaults.headers.common[ 'x-access-token' ] = t;
             // $httpProvider.defaults.headers.post[ 'x-access-token' ] = token
-            console.log("set")
-
+            console.log("set");
         }
 
-        this.userName='shir'
+        this.userName='shir';
+        // self.getTokenForResolver = function () {
+        //     return self.token;
+        // }
  
 
     }])

@@ -1,6 +1,7 @@
 let app = angular.module('citiesApp', ["ngRoute", 'LocalStorageModule']);
 
-app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+app.config(['$locationProvider', '$routeProvider',
+function ($locationProvider, $routeProvider) {
 
 
     $locationProvider.hashPrefix('');
@@ -8,6 +9,7 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 
     $routeProvider.when('/', {
         templateUrl:'components/Welcome/guests.html',
+       // resolve: tokenResolver(setHeadersToken),
         css:'components/Welcome/style_guests.css'
     })
         .when('/about', {
@@ -45,6 +47,8 @@ app.controller('MainCtrl', function($scope, $routeParams, $route, $location)
 });
 
 
-
+// function tokenResolver(setHeadersToken){
+//     return setHeadersToken.getTokenForResolver() === undefined ? false : true; // to complete
+// }
 
 

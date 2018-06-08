@@ -1,5 +1,5 @@
 <div class="container" >
-    <form ng-controller="registerController as regCtrl">
+    <form >
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputFName">First Name</label>
@@ -17,8 +17,8 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputState">Country</label>
-                <select id="inputState" class="form-control">
-                    <option ng-repeat="option in countries" >{{option}}</option>
+                <select id="inputState" ng-modal="regCtrl." class="form-control">
+                    <option ng-repeat="country in regCtrl.countries" >{{country}}</option>
                 </select>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="form-group col-md-6">
                 <label for="inputQ1">Verification question</label>
                 <select id="inputQ1" class="form-control" name="repeatSelect" id="repeatSelect" ng-model="data.model">
-                        <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                        <option ng-repeat="option in regCtrl.questions" >{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -53,7 +53,7 @@
             <div class="form-group col-md-6">
                 <label for="inputQ2">Verification question</label>
                 <select id="inputQ2" class="form-control" name="repeatSelect" id="repeatSelect" ng-model="data.model">
-                        <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                        <option ng-repeat="option in regCtrl.questions" >{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">

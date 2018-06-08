@@ -1,25 +1,21 @@
 var reg=   angular.module('citiesApp');
- reg.controller('registerController', ['$scope','$http', function($scope,$http) {
-   $scope.data = {
-    model: null,
-    availableOptions: [
-      {id: '1', name: 'What is your favorite color'},
-      {id: '2', name: 'Where are you from?'},
-      {id: '3', name: 'Who is your best friend?'}
-    ]
-   };
-
+ reg.controller('registerController', ['$http','$scope', function($http,$scope) {
+     self=this;
+     self.questions =['What is your favorite color?','What is your favorite animel?'
+     ,'What is the name of your elementary school?'];
+    self.countries=[];
 let serverUrl = 'http://localhost:8080/'
         // register user
+        
         $http.get(serverUrl + "countries")
             .then(function (response) {
-                countries=response.data;
-                for (var x=0; x<countries.length; x++) {
-                    var str=countries[x]['Name']['0']; 
-                    countries[x]=str;
+               let res=response.data;
+                for (var x=0; x<res.length; x++) {
+                    var str=res[x]['Name']['0']; 
+                    self.countries[x]=str;
                 }
-                //console.log(countries);
-                $scope.countries= response.data;
+                console.log(self.countries);
+              //  $scope.countries= response.data;
             }, function (response) {
                 //Second function handles error
                 console.log("error");
