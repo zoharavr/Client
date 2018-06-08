@@ -1,0 +1,36 @@
+<div class="container" ng-controller="guestsController as gesCtrl">
+    <div class="row">
+        <div class="  card card-container pull-left">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" >
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div id="remember" class="checkbox">
+                    <a href="#" class="forgot-password">
+                        Forgot the password?
+                    </a>
+                </div>
+                <div class="wrapper">
+                    <span class="group-btn  col-lg-6">
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">login</button>
+                    </span>
+                </div>
+            </form>
+
+        </div>
+        <div class=" card card-container pull-right">
+            <div id="not_signed">
+                <a class="forgot-password">
+                    Not yet registered? Hurry up and register
+                </a>
+            </div>
+            <span class="group-btn col-lg-6">
+                <button ng-click="gesCtrl.changeToRegPage()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+            </span>
+        </div>
+        </form>
+    </div>
+</div>
+</div>

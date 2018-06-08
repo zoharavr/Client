@@ -1,11 +1,10 @@
-<html ng-app="citiesApp">
+<html ng-app="citiesApp" ng-controller="MainCtrl">
 
 <head>
     <title>Cities App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
-        <link rel="stylesheet" ng-href="{{css}}">
-    <!-- <link rel="stylesheet" type="text/css" href="style_index.css"> -->
+        <link type="text/css"  rel="stylesheet" ng-href="{{css}}">
 </head>
 
 <body ng-controller="indexController as indxCtrl">
@@ -46,6 +45,7 @@
         <script src="components/Services/serviceController.js"></script>
         <script src="components/Services/localStorageModel.js"></script>
         <script src="components/Welcome/registerController.js"></script>
+        <script src="components/Welcome/guestsController.js"></script>
         <!-- bootstrap -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>

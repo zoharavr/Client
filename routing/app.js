@@ -7,14 +7,8 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 
 
     $routeProvider.when('/', {
-        template: " <ul class=\"slideshow\">" +
-            "<li></li>" +
-            " <li></li>" +
-            "<li></li>" +
-            " <li></li>" +
-            "<li></li>" +
-            " </ul>",
-            css:'style_index.css'
+        templateUrl:'components/Welcome/guests.html',
+        css:'components/Welcome/style_guests.css'
     })
         .when('/about', {
             templateUrl: 'components/About/about.html',
@@ -31,17 +25,24 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
         .when('/register', {
             templateUrl: 'components/Welcome/register.html',
             controller: 'registerController as rgsCtrl',
-            css: 'components/Welcome/register.css'
+            css:'style_index.css'
         })
         .otherwise({ redirectTo: '/' });
 
 
 }]);
 
-
-
-
-
+app.controller('MainCtrl', function($scope, $routeParams, $route, $location) 
+{
+  $scope.$watch(function()
+  {
+    return ($route.current && $route.current.css) ? $route.current.css : 'home.css';
+  }, 
+  function(value) 
+  {
+    $scope.css = value;
+  });
+});
 
 
 
