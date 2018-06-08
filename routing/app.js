@@ -1,33 +1,41 @@
 let app = angular.module('citiesApp', ["ngRoute", 'LocalStorageModule']);
 
-app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider)  {
+app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 
 
     $locationProvider.hashPrefix('');
 
 
     $routeProvider.when('/', {
-        template: '<h1>This is the default route</h1>'
+        template: " <ul class=\"slideshow\">" +
+            "<li></li>" +
+            " <li></li>" +
+            "<li></li>" +
+            " <li></li>" +
+            "<li></li>" +
+            " </ul>",
+            css:'style_index.css'
     })
         .when('/about', {
             templateUrl: 'components/About/about.html',
-            controller : 'aboutController as abtCtrl'
+            controller: 'aboutController as abtCtrl'
         })
         .when('/poi', {
             templateUrl: 'components/POI/poi.html',
-            controller : 'poiCtrl as poiCtrl'
+            controller: 'poiCtrl as poiCtrl'
         })
         .when('/service', {
             templateUrl: 'components/Services/service.html',
-            controller : 'serviceController as srvCtrl'
+            controller: 'serviceController as srvCtrl'
         })
-        .when('/register',{
+        .when('/register', {
             templateUrl: 'components/Welcome/register.html',
-            controller : 'registerController as rgsCtrl'
+            controller: 'registerController as rgsCtrl',
+            css: 'components/Welcome/register.css'
         })
         .otherwise({ redirectTo: '/' });
 
-        
+
 }]);
 
 
