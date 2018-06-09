@@ -27,24 +27,18 @@ function ($locationProvider, $routeProvider) {
         .when('/register', {
             templateUrl: 'components/Welcome/register.html',
             controller: 'registerController as rgsCtrl',
-            css:'style_index.css'
+           // css:'style_index.css'
+        })
+        .when('/restore',{
+            templateUrl:'components/Welcome/passwordRestore.html',
+            controller:'passRestoreController as passRestoreCtrl'
         })
         .otherwise({ redirectTo: '/' });
 
 
 }]);
 
-app.controller('MainCtrl', function($scope, $routeParams, $route, $location) 
-{
-  $scope.$watch(function()
-  {
-    return ($route.current && $route.current.css) ? $route.current.css : 'home.css';
-  }, 
-  function(value) 
-  {
-    $scope.css = value;
-  });
-});
+
 
 
 

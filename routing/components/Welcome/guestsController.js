@@ -8,7 +8,7 @@ angular.module('citiesApp').controller('guestsController',['$http','$location','
             //register user fields
             //NEED TO ADD CATEGORIES 
             myObj = { 
-                "Username":self.email, 
+                "Username":self.username, 
                 "UserPass":self.password,
                 }     
             //register user

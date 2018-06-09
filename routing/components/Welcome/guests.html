@@ -5,10 +5,10 @@
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" >
                 <!-- <span id="reauth-email" class="reauth-email" ></span> -->
-                <input id="inputEmail" class="form-control" placeholder="Email address" required autofocus ng-model="gesCtrl.email">
+                <input id="inputUserNm" class="form-control" placeholder="User Name" required autofocus ng-model="gesCtrl.username">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="gesCtrl.password">
                 <div id="remember" class="checkbox">
-                    <a href="#" ng-click="gesCtrl.Forgot()" class="forgot-password">
+                    <a href="#/restore" ng-click="gesCtrl.Forgot()" class="forgot-password">
                         Forgot the password?
                     </a>
                 </div>
