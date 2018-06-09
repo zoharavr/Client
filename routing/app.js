@@ -9,7 +9,7 @@ function ($locationProvider, $routeProvider) {
 
     $routeProvider.when('/', {
         templateUrl:'components/Welcome/guests.html',
-       // resolve: tokenResolver(setHeadersToken),
+        // controller: 'indexController as inCtrl',
         css:'components/Welcome/style_guests.css'
     })
         .when('/about', {
@@ -46,9 +46,5 @@ app.controller('MainCtrl', function($scope, $routeParams, $route, $location)
   });
 });
 
-
-// function tokenResolver(setHeadersToken){
-//     return setHeadersToken.getTokenForResolver() === undefined ? false : true; // to complete
-// }
 
 

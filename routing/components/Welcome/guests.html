@@ -4,17 +4,17 @@
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" >
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <!-- <span id="reauth-email" class="reauth-email" ></span> -->
+                <input id="inputEmail" class="form-control" placeholder="Email address" required autofocus ng-model="gesCtrl.email">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="gesCtrl.password">
                 <div id="remember" class="checkbox">
-                    <a href="#" class="forgot-password">
+                    <a href="#" ng-click="gesCtrl.Forgot()" class="forgot-password">
                         Forgot the password?
                     </a>
                 </div>
                 <div class="wrapper">
                     <span class="group-btn  col-lg-6">
-                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">login</button>
+                        <button ng-click="gesCtrl.signIn()"class="btn btn-lg btn-primary btn-block btn-signin" type="submit">login</button>
                     </span>
                 </div>
             </form>

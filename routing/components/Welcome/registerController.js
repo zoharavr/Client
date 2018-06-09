@@ -20,4 +20,30 @@ let serverUrl = 'http://localhost:8080/'
                 //Second function handles error
                 console.log("error");
             });
+      
+            self.reg = function () {
+                //json objects to send
+                //register user fields
+                //NEED TO ADD CATEGORIES 
+                myObj = { 
+                    "FirstName":self.firstName, 
+                    "LastName":self.lastName,
+                    "City":self.City,
+                    "Username":self.userName ,
+                    "UserPass":self.password ,
+                    "Email":self.email ,
+                    "Questions":self.ver1 ,
+                    "Verifiers":self.ans1 ,
+                    "Questions":self.ver2, 
+                    "Verifiers":self.ans2,
+                    "Country":self.Country 
+                    }     
+                //register user
+                $http.post(serverUrl + "register", myObj)
+                    .then(function (response) {
+                        console.log(response);
+                    }, function (response) {
+                         alert("something went wrong");
+                     });   
+            }
         }]);
