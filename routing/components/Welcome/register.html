@@ -17,8 +17,8 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputState">Country</label>
-                <select id="inputState" ng-modal="regCtrl." class="form-control">
-                    <option ng-repeat="country in regCtrl.countries" >{{country}}</option>
+                <select id="inputState" ng-modal="rgsCtrl." class="form-control">
+                    <option ng-repeat="country in rgsCtrl.countries" >{{country}}</option>
                 </select>
             </div>
         </div>
@@ -40,8 +40,8 @@
         <div class="form-row" >
             <div class="form-group col-md-6">
                 <label for="inputQ1">Verification question</label>
-                <select id="inputQ1" class="form-control" name="repeatSelect" id="repeatSelect" ng-model="data.model">
-                        <option ng-repeat="option in regCtrl.questions" >{{option}}</option>
+                <select id="inputQ1" class="form-control" name="repeatSelect1" id="repeatSelect1" >
+                        <option ng-repeat="option in rgsCtrl.questions" >{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -52,8 +52,8 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputQ2">Verification question</label>
-                <select id="inputQ2" class="form-control" name="repeatSelect" id="repeatSelect" ng-model="data.model">
-                        <option ng-repeat="option in regCtrl.questions" >{{option}}</option>
+                <select id="inputQ2" class="form-control" name="repeatSelec2t" id="repeatSelect2" >
+                        <option ng-repeat="option in rgsCtrl.questions" >{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
