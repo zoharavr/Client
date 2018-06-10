@@ -33,6 +33,11 @@ function ($locationProvider, $routeProvider) {
             templateUrl:'components/Welcome/passwordRestore.html',
             controller:'passRestoreController as passRestoreCtrl'
         })
+        .when('/AllPoints',{
+            templateUrl:'components/POI/AllPoints.html',
+            controller: 'allPointsController as allPntsCtrl'
+            
+        })
         .otherwise({ redirectTo: '/' });
 
 
