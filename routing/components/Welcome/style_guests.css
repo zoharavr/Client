@@ -123,3 +123,9 @@ body, html {
    padding: 0px;
    color: rgb(104, 145, 162);
 }
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border:  : 2 px solid red;
+}
+.form-control.ng-invalid.ng-touched{
+    border:  : 2 px solid red;
+}

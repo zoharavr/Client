@@ -1,41 +1,70 @@
 <div class="container">
-    <form>
+    <form name="reg">
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputFName">First Name</label>
-                <input type="text" class="form-control" id="inputFName" placeholder="First Name" ng-model="rgsCtrl.firstName">
-
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputLname">Last Name</label>
-                <input type="text" class="form-control" id="inputLname" placeholder="Last Name" ng-model="rgsCtrl.lastName">
-            </div>
+                    <div class="form-group col-md-6" name= "firstName">
+                            <label for="inputFName">First Name</label>
+                            <input type="text" name= "firstName" class="form-control" placeholder="First Name" ng-model="rgsCtrl.firstName" ng-required="true" >
+                            <span class="help-block"
+                               ng-show="reg.firstName.$invalid && !reg.firstName.$untouched">
+                            Your name is required.
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputLname">Last Name</label>
+                        <input type="text" name= "lastName" class="form-control" id="inputLname" placeholder="Last Name" ng-model="rgsCtrl.lastName" ng-required="true">
+                        <span class="help-block"
+                               ng-show="reg.lastName.$invalid && !reg.lastName.$untouched">
+                            Your last name is required.
+                        </span>
+                    </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" ng-model="rgsCtrl.City">
+                <input type="text" class="form-control" name="city" id="inputCity" ng-model="rgsCtrl.City" ng-required="true">
+                <span class="help-block"
+                ng-show="reg.city.$invalid && !reg.city.$untouched">
+                    Your city is required.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputState">Country</label>
-                <select id="inputState" ng-modal="rgsCtrl." class="form-control" ng-model="rgsCtrl.Country">
-                    <option ng-repeat="country in rgsCtrl.countries">{{country}}</option>
+                <select id="inputState" ng-modal="rgsCtrl." class="form-control" ng-model="rgsCtrl.Country" ng-required="true">
+                    <option ng-repeat="country in rgsCtrl.countries" ng-required="true">{{country}}</option>
                 </select>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputUName">User Name</label>
-                <input type="text" class="form-control" id="inputUName" ng-model="rgsCtrl.userName">
+                <input type="text" class="form-control" name= "userName"id="inputUName" ng-model="rgsCtrl.userName" ng-minlength="3" ng-maxlength="8" ng-required="true" ng-pattern="/^[a-zA-Z]+$/">  
+                <p ng-show="reg.userName.$error.minlength" class="help-block">User name must be between 3 and 8 letters</p>
+                <p ng-show="reg.userName.$error.maxlength" class="help-block">User name must be between 3 and 8 letters</p>
+                <p ng-show="reg.userName.$error.pattern" class="help-block">User name must contain only letters </p>
+                <span class="help-block"
+                ng-show="reg.userName.$invalid && !reg.userName.$untouched">
+                    Your user name is required.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password" ng-model="rgsCtrl.password">
+                <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password" ng-model="rgsCtrl.password" ng-required="true" ng-minlength="5" ng-maxlength="10">
+                <p ng-show="reg.password.$error.minlength" class="help-block">Password must be between 5 and 10 characters</p>
+                <p ng-show="reg.password.$error.maxlength" class="help-block">Password must be between 5 and 10 characters</p>
+                <p ng-show="reg.password.$error.pattern" class="help-block">Password must contain only letters and digits</p>
+                <span class="help-block"
+                ng-show="reg.password.$invalid && !reg.password.$untouched">
+                    Your password is required.
+                </span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" ng-model="rgsCtrl.email">
+            <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" ng-model="rgsCtrl.email" ng-required="true">
+            <span class="help-block"
+            ng-show="reg.email.$invalid && !reg.email.$untouched">
+                Your email is required.
+            </span>
         </div>
         <!-- insert here the Categories from the controller! -->
         <div class="form-row">
@@ -44,7 +73,7 @@
                         <input type="checkbox" ng-model="c.Selected"  > {{c.Selected}}
                 </span> -->
                 <span>
-                    <input type="checkbox" ng-model="c.selected" ng-true-value="'YES'" ng-false-value="'NO'" >
+                    <input type="checkbox" ng-model="c.selected" ng-true-value="'YES'" ng-false-value="'NO'">
                 </span>
                 <label ng-bind="c.category" style="margin-right:10px;"></label>
             </span>
@@ -53,28 +82,36 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputQ1">Verification question</label>
-                <select id="inputQ1" class="form-control" name="repeatSelect1" id="repeatSelect1" ng-model="rgsCtrl.ver1">
+                <select id="inputQ1" class="form-control" name="repeatSelect1" id="repeatSelect1" ng-model="rgsCtrl.ver1" ng-required="true">
                     <option ng-repeat="option in rgsCtrl.questions">{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputAns1">Answer</label>
-                <input type="text" class="form-control" id="inputAns1" ng-model="rgsCtrl.ans1">
+                <input type="text" name="ans1" class="form-control" id="inputAns1" ng-model="rgsCtrl.ans1" ng-required="true">
+                <span class="help-block"
+                ng-show="reg.ans1.$invalid && !reg.ans1.$untouched">
+                    Your answer is required.
+                </span>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputQ2">Verification question</label>
-                <select id="inputQ2" class="form-control" name="repeatSelec2t" id="repeatSelect2" ng-model="rgsCtrl.ver2">
+                <select id="inputQ2" class="form-control" name="repeatSelec2t" id="repeatSelect2" ng-model="rgsCtrl.ver2" ng-required="true">
                     <option ng-repeat="option in rgsCtrl.questions">{{option}}</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputAns2">Answer</label>
-                <input type="text" class="form-control" id="inputAns2" ng-model="rgsCtrl.ans2">
+                <input type="text" name = "ans2" class="form-control" id="inputAns2" ng-model="rgsCtrl.ans2" ng-required="true"> 
+                <span class="help-block"
+                ng-show="reg.ans2.$invalid && !reg.ans2.$untouched">
+                Your answer is required.
+                </span>
             </div>
         </div>
 
-        <button ng-click="rgsCtrl.reg()" type="submit" class="btn btn-primary">Sign in</button>
-    </form>
+        <button ng-click="rgsCtrl.reg(reg.$valid)" type="submit" class="btn btn-primary"  >Sign in</button>
+        <!-- ng-disabled="reg.$invalid" -->
 </div>
