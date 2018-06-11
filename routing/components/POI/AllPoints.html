@@ -1,18 +1,37 @@
-<table class="table table-hover" >
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Category</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Views</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="p in allPntsCtrl.points" >
-        <th scope="row">{{p.PointName}}</th>
-        <td>{{p.Category}}</td>
-        <td>{{p.Ratings}}</td>
-        <td>{{p.Views}}</td>
-      </tr>
-    </tbody>
-  </table>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Search POI by name:</label>
+      <input type="text" class="form-control" id="inputCity" ng-model="search.PointName">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Order By:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in allPntsCtrl.order" ng-model="selected_column">
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Show by category:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in allPntsCtrl.categories" ng-model="selected_category">
+      </select>
+    </div>
+  </div>
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Views</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search">
+      <th scope="row" ng-filer="">{{p.PointName}}</th>
+      <td>{{p.Category}}</td>
+      <td>{{p.Ratings}}</td>
+      <td>{{p.Views}}</td>
+    </tr>
+  </tbody>
+</table>
