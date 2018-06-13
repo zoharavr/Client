@@ -38,6 +38,10 @@ function ($locationProvider, $routeProvider) {
             controller: 'allPointsController as allPntsCtrl'
             
         })
+        .when('/Users', {
+            templateUrl:'components/Users/user.html',
+            controller: 'userController as userCtrl'
+        })
         .otherwise({ redirectTo: '/' });
 
 
