@@ -1,28 +1,8 @@
 
 
 angular.module('citiesApp')
-    // .service('myService', function () { this.set = function() {return "hello"} })
-    .service('setHeadersToken',[ '$http', function ($http) {
 
-        self.token = ""
-
-        self.set = function (t) {
-            self.token = t;
-            $http.defaults.headers.common[ 'x-access-token' ] = t;
-            // $httpProvider.defaults.headers.post[ 'x-access-token' ] = token
-            console.log("set");
-        }
-
-        this.userName='shir';
-        // self.getTokenForResolver = function () {
-        //     return self.token;
-        // }
- 
-
-    }])
-
-    
-    .controller('serviceController', ['$location', '$http', 'setHeadersToken','localStorageModel', function ($location, $http, setHeadersToken,localStorageModel) {
+   .controller('serviceController', ['$location', '$http', 'setHeadersToken','localStorageModel', function ($location, $http, setHeadersToken,localStorageModel) {
 
 
         self = this;
