@@ -1,28 +1,22 @@
 angular.module('citiesApp').controller('userController', ['$http', function ($http) {
-    let serverUrl = 'http://localhost:8080/';
     self = this;
-    self.username, self.questions;
-    self.answers = {
-        Username: "",
-        answer1: "",
-        answer2: ""
-    }
-    self.getQuestions = function () {
-        $http.get(serverUrl + "retrieve/Questions/" + self.username)
-            .then(function (response) {
-                self.questions = response.data;
-            }, function (response) {
-                console.log(response);
-            });
-    };
-    self.sendAnswers = function () {
-        self.answers.Username=self.username;
-        $http.post(serverUrl + "retrieve/Answers", self.answers)
-            .then(function (response) {
-                self.password=response.data[0].UserPass;
-            }, function (response) {
-                console.log(response);
-            });
-    }
+    let serverUrl = 'http://localhost:8080/';
+    //The screen will be splitted for 2 sides.
+    //The system will represent the 2 most popular POI (by subject)  
+    $http.get(serverUrl + "Users/2InterestPoint")
+    .then(function (response) {
+       console.log(response);
+    }, function (response) {
+        console.log(response);
+    }); 
+    //The system will represent the last two POI, that the user has saved
+    $http.get(serverUrl + "Users/Last2Saved")
+    .then(function (response) {
+        console.log(response);
+    }, function (response) {
+        console.log(response);
+    }); 
+
+
 
 }]);
