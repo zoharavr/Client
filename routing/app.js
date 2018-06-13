@@ -14,7 +14,7 @@ function ($locationProvider, $routeProvider) {
     })
         .when('/about', {
             templateUrl: 'components/About/about.html',
-            controller: 'aboutController as abtCtrl'
+            css: 'components/About/style_about.css'
         })
         .when('/poi', {
             templateUrl: 'components/POI/poi.html',
