@@ -1,36 +1,39 @@
-<div class="container" ng-controller="guestsController as gesCtrl">
+<div class="container">
     <div class="row">
+        <div class="card w-50">
+            <div class="card-body">
+                <h5 class="card-title">Welcome!</h5>
+                <p class="card-text">We invite you to explore with us he enchanting Sydney. If you are not yet registered Hurry up and register!
+                    <br> If you already have an account just log in and start exploring! </p>
+                <br>
+                <a href="#/register" id="login" class="btn btn-lg btn-primary btn-block btn-signin">Register</a>
+            </div>
+        </div>
         <div class="  card card-container pull-left">
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" >
-                <!-- <span id="reauth-email" class="reauth-email" ></span> -->
+            <form class="form-signin">
                 <input id="inputUserNm" class="form-control" placeholder="User Name" required autofocus ng-model="gesCtrl.username">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="gesCtrl.password">
                 <div id="remember" class="checkbox">
-                    <a href="#/restore" ng-click="gesCtrl.Forgot()" class="forgot-password">
-                        Forgot the password?
+                    <a href="#/restore" class="forgot-password">
+                        Forgot your password?
                     </a>
                 </div>
                 <div class="wrapper">
                     <span class="group-btn  col-lg-6">
-                        <button ng-click="gesCtrl.signIn()"class="btn btn-lg btn-primary btn-block btn-signin" type="submit">login</button>
+                        <button ng-click="gesCtrl.login()" class="btn btn-lg btn-primary btn-signin" type="submit">login</button>
                     </span>
                 </div>
             </form>
-
         </div>
-        <div class=" card card-container pull-right">
-            <div id="not_signed">
-                <a class="forgot-password">
-                    Not yet registered? Hurry up and register
-                </a>
-            </div>
-            <span class="group-btn col-lg-6">
-                <button ng-click="gesCtrl.changeToRegPage()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
-            </span>
-        </div>
-        </form>
     </div>
-</div>
+    <div class="row mx-auto">
+        <div class="card random" ng-repeat="x in gesCtrl.randompnts"  >
+            <!-- UPDATE URL!!! -->
+ 
+                <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)"  ng-src="{{x.Ref}}" >
+           <div class="text">{{x.PointName}}</div>
+        </div>
+    </div>
 </div>

@@ -9,7 +9,7 @@ function ($locationProvider, $routeProvider) {
 
     $routeProvider.when('/', {
         templateUrl:'components/Welcome/guests.html',
-        // controller: 'indexController as inCtrl',
+        controller: 'guestsController as gesCtrl',
         css:'components/Welcome/style_guests.css'
     })
         .when('/about', {

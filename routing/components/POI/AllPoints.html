@@ -28,7 +28,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search">
-      <th scope="row" ng-filer="">{{p.PointName}}</th>
+      <th scope="row" >{{p.PointName}}</th>
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
       <td>{{p.Views}}</td>
