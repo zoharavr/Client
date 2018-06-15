@@ -1,5 +1,5 @@
 var reg=   angular.module('citiesApp');
- reg.controller('registerController', ['$http','$scope', function($http,$scope) {
+ reg.controller('registerController', ['$http','$scope','$location', function($http,$scope,$location) {
      self=this;
      self.questions =['What is your favorite color?','What is your favorite animel?'
      ,'What is the name of your elementary school?'];
@@ -57,6 +57,7 @@ let serverUrl = 'http://localhost:8080/'
 
                      .then(function (response) {
                          console.log(response);
+                         $location.url('/');
                      }, function (response) {
                           alert("something went wrong");
                       });

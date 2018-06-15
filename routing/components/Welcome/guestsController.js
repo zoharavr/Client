@@ -51,9 +51,17 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
             }
             $http.post(serverUrl + "login", myObj)
                 .then(function (response) {
-                    localStorageService.set('token', response.data.token);
-                    setHeadersToken.set(response.data.token);
-                    $location.url("/Users")
+                    if (response.data.success){
+                        localStorageService.set('token', response.data.token);
+                        setHeadersToken.set(response.data.token);
+                        $scope.userName = response.data.Username;
+                        console.log( response.data.Username);
+                        $location.url("/Users")
+                    }
+                    else {
+                        alert('Your password or your user name is wrong')
+                    }
+                   
                 }, function (response) {
                     console.log(response);
                 });
