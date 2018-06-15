@@ -21,7 +21,6 @@ angular.module('citiesApp')
                     console.log(response);
                 });
         }
-
         $scope.$watch(function () {
             return ($route.current && $route.current.css) ? $route.current.css : 'home.css';
         },

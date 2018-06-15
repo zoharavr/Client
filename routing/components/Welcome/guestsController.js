@@ -24,32 +24,31 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
             }, (response) => {
                 console.log(response);
             });
+        // move to POI page
         $scope.navigationUrl = function (id) {
             setID.setPointID(id);
             var url = "#/poi";
-            //  $location.url("/poi")
-            $window.open(url, '_blank'); // in new tab
+            $location.url("/poi");
+            // $window.open(url, '_blank'); // in new tab
 
         };
-        //register was clicked 
+       //if we've got token te user shuld see his prsonal page
         var token = localStorageService.get('token');
         if (token != null) {
             $location.url("/Users")
         }
+         //register was clicked 
         self.changeToRegPage = function () {
             $location.url('/register');
         };
 
         self.login = function () {
             //json objects to send
-            //register user fields
             //NEED TO ADD CATEGORIES 
             myObj = {
                 "Username": self.username,
                 "UserPass": self.password,
             }
-            //register user
-
             $http.post(serverUrl + "login", myObj)
                 .then(function (response) {
                     localStorageService.set('token', response.data.token);
@@ -59,8 +58,4 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
                     console.log(response);
                 });
         };
-
-
-
-
     }]);

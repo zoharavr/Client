@@ -18,7 +18,8 @@ function ($locationProvider, $routeProvider) {
         })
         .when('/poi', {
             templateUrl: 'components/POI/poi.html',
-            controller: 'poiCtrl as poiCtrl'
+            controller: 'poiCtrl as poiCtrl',
+            css:'components/POI/poi_style.css'
         })
         .when('/service', {
             templateUrl: 'components/Services/service.html',
@@ -27,7 +28,6 @@ function ($locationProvider, $routeProvider) {
         .when('/register', {
             templateUrl: 'components/Welcome/register.html',
             controller: 'registerController as rgsCtrl',
-           // css:'style_index.css'
         })
         .when('/restore',{
             templateUrl:'components/Welcome/passwordRestore.html',
