@@ -35,7 +35,8 @@ function ($locationProvider, $routeProvider) {
         })
         .when('/AllPoints',{
             templateUrl:'components/POI/AllPoints.html',
-            controller: 'allPointsController as allPntsCtrl'
+            controller: 'allPointsController as allPntsCtrl',
+            css: 'components/POI/AllPoints.css'
             
         })
         .when('/Users', {

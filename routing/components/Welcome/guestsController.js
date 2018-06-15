@@ -38,7 +38,10 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
         self.changeToRegPage = function () {
             $location.url('/register');
         };
-
+        //all POI was clicked
+        self.allPOI = function (){
+            $location.url('/AllPoints');
+        }
         self.login = function () {
             //json objects to send
             //NEED TO ADD CATEGORIES 

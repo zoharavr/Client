@@ -33,6 +33,9 @@ angular.module('citiesApp').controller('userController', ['$http','localStorageS
         var url = "#/poi";
         $location.url("/poi");
     };
-
+    //all POI was clicked
+    self.allPOI = function (){
+        $location.url('/AllPoints');
+    }
 
 }]);

@@ -1,4 +1,6 @@
 <form>
+  
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Search POI by name:</label>
@@ -25,14 +27,22 @@
       <th scope="col">Category</th>
       <th scope="col">Rating</th>
       <th scope="col">Views</th>
+      <th ng-show="allPntsCtrl.flag" scope="col">Favorites</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search">
-      <th scope="row" ><a  href ng-click="allPntsCtrl.forword(p.ID)">{{p.PointName}}</a></th>
+      <th  scope="row" ><a  href ng-click="allPntsCtrl.forword(p.ID)">{{p.PointName}}</a></th>
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
       <td>{{p.Views}}</td>
+      <td ng-show="allPntsCtrl.flag" ng-click="allPntsCtrl.save(p.ID)" ng-model="allPntsCtrl.val" > <label class="switch">
+        {{val}}
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label> </td>
     </tr>
   </tbody>
+ 
+
 </table>

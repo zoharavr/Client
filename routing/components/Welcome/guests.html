@@ -24,10 +24,14 @@
                     <span class="group-btn  col-lg-6">
                         <button ng-click="gesCtrl.login()" class="btn btn-lg btn-primary btn-signin" type="submit">login</button>
                     </span>
+                    <span class="group-btn  col-lg-6">
+                        <button ng-click="gesCtrl.allPOI()" class="btn btn-lg btn-primary btn-signin" type="submit">all POI</button>
+                    </span>
                 </div>
             </form>
         </div>
     </div>
+    
     <div class="row mx-auto">
         <div class="card random" ng-repeat="x in gesCtrl.randompnts"  >
             <!-- UPDATE URL!!! -->
