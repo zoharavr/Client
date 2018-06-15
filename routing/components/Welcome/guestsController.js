@@ -29,8 +29,6 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
             setID.setPointID(id);
             var url = "#/poi";
             $location.url("/poi");
-            // $window.open(url, '_blank'); // in new tab
-
         };
        //if we've got token te user shuld see his prsonal page
         var token = localStorageService.get('token');
@@ -54,7 +52,8 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
                     if (response.data.success){
                         localStorageService.set('token', response.data.token);
                         setHeadersToken.set(response.data.token);
-                        $scope.userName = response.data.Username;
+                        $scope.userName ={};
+                        $scope.userName=response.data.Username;
                         console.log( response.data.Username);
                         $location.url("/Users")
                     }

@@ -1,6 +1,14 @@
 <div class="modal-body row">
-    <div class="col-md-6">  
-        first query
+    <div class="col-md-6">
+    <button ng-click="userCtrl.logOut()" type="submit" class="btn btn-primary"  >Sign out</button>
+    <h2>Your best interest points</h2>
+            <div class="row mx-auto">
+                    <div class="card random" ng-repeat="x in userCtrl.InterestPoint"  >
+                        <!-- UPDATE URL!!! -->
+                            <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)"  ng-src="{{x.Ref}}" >
+                       <div class="text">{{x.PointName}}</div>
+                    </div>
+                </div>
     </div>
     <div class="col-md-6">
         second query

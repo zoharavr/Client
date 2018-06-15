@@ -15,7 +15,8 @@ angular.module('citiesApp')
                     console.log(response)
                     if (response.data.success) {
                         $location.url('/Users');
-                        $scope.userName = response.data.userName;
+                        $scope.userName = {};
+                        $scope.userName=response.data.userName;
                         
                         console.log(response.data.userName);
                     }
