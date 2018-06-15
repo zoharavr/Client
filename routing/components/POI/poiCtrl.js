@@ -11,11 +11,16 @@ mainApp.factory('setID', ['localStorageService', function (localStorageService) 
 
     return factory;
 }]);
-mainApp.controller('poiCtrl', ['$http', 'setID', function ($http, setID) {
+mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function ($http, setID,localStorageService ) {
     let serverUrl = 'http://localhost:8080/';
     self = this;
-    //get last 2 comments for the point
-
+ // check if the user is logged in if so show the comment button
+    let token =  localStorageService.get('token');
+    if(token != null){
+        self.flag=true
+    }
+    else self.flag-false;
+       //get last 2 comments for the point
     $http.get(serverUrl + "last2comments/" + setID.id)
         .then((response) => {
             console.log(response.data);
