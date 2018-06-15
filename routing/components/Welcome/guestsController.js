@@ -27,7 +27,6 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
         // move to POI page
         $scope.navigationUrl = function (id) {
             setID.setPointID(id);
-            var url = "#/poi";
             $location.url("/poi");
         };
        //if we've got token te user shuld see his prsonal page

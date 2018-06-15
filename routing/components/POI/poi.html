@@ -1,7 +1,92 @@
-<div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
+<!-- <div class="jumbotron">
+                <h1 class="display-4">{{poiCtrl.point.PointName}}</h1>
+                <img src="{{poiCtrl.point.Ref}}" style="width:200px;height:200px;" class="rounded float-right" alt="...">
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
                 <hr class="my-4">
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                 <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+              </div> -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<div class="container">
+
+  <div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+      <!-- Title -->
+      <h1 class="mt-4">{{poiCtrl.point.PointName}}</h1>
+
+      <!-- Preview Image -->
+      <img class="img-fluid rounded" src="{{poiCtrl.point.Ref}}" style="width:900;height:300px;" alt="">
+
+      <hr>
+
+      <!-- Post Content -->
+      <p class="lead">{{poiCtrl.point.Description}}</p>
+      <hr>
+      <button type="button" class="btn btn-primary mx-auto d-block" data-toggle="modal" data-target="#exampleModalCenter">
+        Leave comment
+      </button>
+      <hr>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Comment here!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <span aria-hidden="true">&times;</span> -->
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" ng-model="poiCtrl.content"></textarea>
+                </div>
+                <hr>
+                <label>Rank the point:</label>
+                <input type="radio" ng-model="poiCtrl.selected" name='rank' value="1">1
+                <input type="radio" ng-model="poiCtrl.selected" name='rank' value="2">2
+                <input type="radio" ng-model="poiCtrl.selected" name='rank' value="3">3
+                <input type="radio" ng-model="poiCtrl.selected" name='rank' value="4">4
+                <input type="radio" ng-model="poiCtrl.selected" name='rank' value="5">5
+
+              </form>
+         
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" ng-click="poiCtrl.make_comment()">Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single Comment -->
+      <div class="media mb-4" ng-repeat="c in poiCtrl.comments">
+        <img class="d-flex mr-3 rounded-circle" style="width: 50px;height:50px;" src="https://image.flaticon.com/icons/svg/54/54761.svg" alt="comment">
+        <div class="media-body">
+          <h5 class="mt-0">{{c.FK_Username}}</h5>
+          {{c.comment}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
+        <!-- <div class="stars">
+                <form action="">
+                  <input class="star star-5" id="star-5" type="radio" name="star" />
+                  <label class="star star-5" for="star-5"></label>
+                  <input class="star star-4" id="star-4" type="radio" name="star" />
+                  <label class="star star-4" for="star-4"></label>
+                  <input class="star star-3" id="star-3" type="radio" name="star" />
+                  <label class="star star-3" for="star-3"></label>
+                  <input class="star star-2" id="star-2" type="radio" name="star" />
+                  <label class="star star-2" for="star-2"></label>
+                  <input class="star star-1" id="star-1" type="radio" name="star" />
+                  <label class="star star-1" for="star-1"></label>
+                </form>
               </div>

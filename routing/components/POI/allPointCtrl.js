@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('allPointsController', ['$http', function ($http) {
+    .controller('allPointsController', ['setID','$http','$location', function (setID,$http,$location) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
         self.order=["Views","Ratings","PointName"];
@@ -13,5 +13,10 @@ angular.module('citiesApp')
                     function (response) {
                         console.log(response);
                     });
+
+        self.forword=(id)=>{
+            setID.setPointID(id);
+            $location.url("/poi");
+        }
         
     }]);

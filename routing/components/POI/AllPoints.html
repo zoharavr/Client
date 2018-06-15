@@ -19,6 +19,7 @@
 
 <table class="table table-hover">
   <thead>
+    
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
@@ -28,7 +29,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search">
-      <th scope="row" >{{p.PointName}}</th>
+      <th scope="row" ><a  href ng-click="allPntsCtrl.forword(p.ID)">{{p.PointName}}</a></th>
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
       <td>{{p.Views}}</td>
