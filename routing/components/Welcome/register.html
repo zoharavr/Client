@@ -49,10 +49,10 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password" ng-model="rgsCtrl.password" ng-required="true" ng-minlength="5" ng-maxlength="10">
+                <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password" ng-model="rgsCtrl.password" ng-required="true" ng-minlength="5" ng-maxlength="10" ng-pattern="/(?=.*\d)(?=.*[a-zA-Z])/">
                 <p ng-show="reg.password.$error.minlength" class="help-block">Password must be between 5 and 10 characters</p>
                 <p ng-show="reg.password.$error.maxlength" class="help-block">Password must be between 5 and 10 characters</p>
-                <p ng-show="reg.password.$error.pattern" class="help-block">Password must contain only letters and digits</p>
+                <p ng-show="reg.password.$error.pattern" class="help-block">Password must contain letters and digits only</p>
                 <span class="help-block"
                 ng-show="reg.password.$invalid && !reg.password.$untouched">
                     Your passwor is required.

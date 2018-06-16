@@ -11,7 +11,7 @@ angular.module('citiesApp')
                 self.flag=false;
             }
         
-        self.val = {};
+        $scope.val = {};
         self.order=["Views","Ratings","PointName"];
         self.categories=["Sights & Landmraks" ,"Outdoor Activities ", "Museums" ,"Shopping" ,"Nightlife"];
    //need to happen imediatlly 
