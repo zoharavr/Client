@@ -23,6 +23,12 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
         });
     //register
     self.reg = function (bool) {
+        if (self.ver1===self.ver2)
+            {
+                alert ('please answer two different questions.');
+                return;
+            }
+
         myObj = {
             "FirstName": self.firstName,
             "LastName": self.lastName,
@@ -30,13 +36,16 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
             "Username": self.userName,
             "UserPass": self.password,
             "Email": self.email,
-            "Questions": self.ver1,
-            "Verifiers": self.ans1,
-            "Questions": self.ver2,
-            "Verifiers": self.ans2,
             "Country": self.Country,
-            "Categories": []
+            "Categories": [], 
+            "Questions": [],
+            "Verifiers": []
         }
+        myObj.Questions.push(self.ver1); 
+        myObj.Questions.push(self.ver2); 
+        myObj.Verifiers.push(self.ans1);
+        myObj.Verifiers.push(self.ans2);
+       
         let n=0;
         for (let i = 0; i < self.categories.length; i++) {
             if (self.categories[i].selected === "YES") {
