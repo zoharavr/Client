@@ -1,12 +1,11 @@
-<!-- <div class="jumbotron">
-                <h1 class="display-4">{{poiCtrl.point.PointName}}</h1>
-                <img src="{{poiCtrl.point.Ref}}" style="width:200px;height:200px;" class="rounded float-right" alt="...">
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-              </div> -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+crossorigin=""/>
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+   crossorigin=""></script>
+<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> -->
 <div class="container">
 
   <div class="row">
@@ -16,6 +15,7 @@
 
       <!-- Title -->
       <h1 class="mt-4">{{poiCtrl.point.PointName}}</h1>
+
 
       <!-- Preview Image -->
       <img class="img-fluid rounded" src="{{poiCtrl.point.Ref}}" style="width:900;height:300px;" alt="">
@@ -72,6 +72,17 @@
         </div>
       </div>
     </div>
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                  <h5 class="card-header">Point information</h5>
+                  <div class="card-body">
+                      <h4> <span class="badge badge-pill badge-primary">Views: {{poiCtrl.point.Views}}  </span></h4>
+                      <h4> <span class="badge badge-pill badge-primary"> Rating: {{poiCtrl.point.Ratings}}% </span> </h4> 
+                  </div>
+                </div>
   </div>
   <!-- /.row -->
 </div>

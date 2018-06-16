@@ -25,7 +25,7 @@ angular.module('citiesApp')
         }
         else $rootScope.userName="guest"
         $scope.$watch(function () {
-            return ($route.current && $route.current.css) ? $route.current.css : 'home.css';
+            return ($route.current && $route.current.css) ? $route.current.css : 'style_index.css';
         },
             function (value) {
                 $scope.css = value;
