@@ -46,6 +46,11 @@ function ($locationProvider, $routeProvider) {
             controller: 'userController as userCtrl',
             css:'components/Users/user_style.css'
         })
+        .when('/favorites',{
+            templateUrl: 'components/POI/favorites.html',
+            controller: 'favCtrl as favCtrl',
+            css: 'components/POI/AllPoints.css'
+        })
         .otherwise({ redirectTo: '/' });
 
 

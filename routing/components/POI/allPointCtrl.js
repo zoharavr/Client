@@ -2,6 +2,7 @@ angular.module('citiesApp')
     .controller('allPointsController', ['setID','$http','$location','localStorageService','$scope', function (setID,$http,$location,localStorageService,$scope) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
+        self.favNum=0;
         // check if the user is logged in if so show the comment button
             var token=localStorageService.get('token');
             if(token != null){
@@ -10,10 +11,9 @@ angular.module('citiesApp')
             else {
                 self.flag=false;
             }
-        
-        $scope.val = {};
+
         self.order=["Views","Ratings","PointName"];
-        self.categories=["Sights & Landmraks" ,"Outdoor Activities ", "Museums" ,"Shopping" ,"Nightlife"];
+        self.categories=["","Sights & Landmraks" ,"Outdoor Activities ", "Museums" ,"Shopping" ,"Nightlife"];
    //need to happen imediatlly 
             $http.get(serverUrl + "Points")
                 .then(function (response) {
@@ -33,22 +33,42 @@ angular.module('citiesApp')
                         function (response) {
                             console.log(response);
                         });
-            self.forword=(id)=>{
+        //redirect to POI page
+            self.forward=(id)=>{
             setID.setPointID(id);
             $location.url("/poi");
         }
 
-        self.save= function(id){           
+        self.save= function(id){         
+      
+        }  
+        //add to favorites when slider is on remove when off    
+        self.insertinvited=function(p){
             myObj = {
-                "ID":id
+                "ID":p.ID
                 }
-            $http.post(serverUrl + "Users/saveInterestPoint",myObj)           
-            .then(function (response) {
-                console.log(response.data);
-            },
-                function (response) {
-                    console.log(response);
-                });
-        }      
+            if(p.isChecked){
+                self.favNum++;
+                $http.post(serverUrl + "Users/saveInterestPoint",myObj)           
+                .then(function (response) {
+                    console.log(response.data);
+                },
+                    function (response) {
+                        console.log(response);
+                    });
+            }
+            else {
+                self.favNum--;
+                $http.delete(serverUrl +"Users/removeInterestPoint/"+p.ID)
+                .then((response)=>{}
+            ),(response)=>{
+                console.log(response);
+            }
+            }
+        }
+        //redirect to user's favorites page
+        self.forward_favor=()=>{
+            $location.url('/favorites');
+        }
     }]);
 

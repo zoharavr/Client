@@ -49,7 +49,13 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
         }
         $http.post(serverUrl + "Users/Comment", comment)
             .then((response) => {
-                console.log("complited");
+                $http.get(serverUrl + "last2comments/" + setID.id)
+                .then((response) => {
+                    console.log(response.data);
+                    self.comments = response.data;
+                }, (response) => {
+                    console.log(response);
+                })
             },
                 (response) => {
                     console.log(response);
@@ -63,5 +69,6 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
                         console.log(response);
                     });
         }
+   
     }
 }]);
