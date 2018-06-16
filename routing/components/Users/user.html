@@ -1,10 +1,10 @@
-<div class="modal-body row">
+<!-- <div class="modal-body row">
     <div class="col-md-6">
     <button ng-click="userCtrl.logOut()" type="submit" class="btn btn-primary"  >Sign out</button>
-    <h2>Your best interest points</h2>
+    <h2>Popular points by categories:</h2>
             <div class="row mx-auto">
                     <div class="card random" ng-repeat="x in userCtrl.InterestPoint"  >
-                        <!-- UPDATE URL!!! -->
+                    
                             <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)"  ng-src="{{x.Ref}}" >
                        <div class="text">{{x.PointName}}</div>
                     </div>
@@ -12,8 +12,40 @@
     </div>
     <div class="col-md-6">
         second query
+  </div> -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4">Popular points</h1>
+        </div>
     </div>
-    <span class="group-btn  col-lg-6">
-        <button ng-click="userCtrl.allPOI()" class="btn btn-lg btn-primary btn-signin" type="submit">all POI</button>
-    </span>
-  </div>
+<hr>
+    <div class="row">
+        <!-- Title -->
+
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb" ng-repeat="x in userCtrl.InterestPoint">
+                <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)" ng-src="{{x.Ref}}"> 
+            <div class="text">{{x.PointName}}</div>
+        </div>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Popular points</h5>
+                <div class="card-body">
+                        The two most popular POIs according to the categories selected when registering.<br>
+                        Click on the image to see more details!
+                </div>
+                <button ng-click="userCtrl.logOut()" type="submit" class="btn btn-primary">Sign out</button>
+            </div>
+
+        </div>
+
+    </div>
+    <hr>
+
+</div>
+<!-- /.container -->

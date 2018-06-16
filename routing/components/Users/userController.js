@@ -1,4 +1,5 @@
-angular.module('citiesApp').controller('userController', ['$http','localStorageService', '$location','$scope','setHeadersToken','setID', function ($http,localStorageService, $location,$scope,setHeadersToken,setID) {
+angular.module('citiesApp').controller('userController', ['$rootScope','$http','localStorageService', '$location','$scope','setHeadersToken','setID',
+ function ($rootScope,$http,localStorageService, $location,$scope,setHeadersToken,setID) {
     self = this;
     let serverUrl = 'http://localhost:8080/';
     //The screen will be splitted for 2 sides.
@@ -23,8 +24,7 @@ angular.module('citiesApp').controller('userController', ['$http','localStorageS
     
     self.logOut= function(){
         localStorageService.remove('token');
-        console.log('Hello guest');
-        $scope.userName = 'Hello guest';
+        $rootScope.userName="guest";
         $location.url('/');
     } 
             // move to POI page
@@ -34,8 +34,8 @@ angular.module('citiesApp').controller('userController', ['$http','localStorageS
         $location.url("/poi");
     };
     //all POI was clicked
-    self.allPOI = function (){
-        $location.url('/AllPoints');
-    }
+    // self.allPOI = function (){
+    //     $location.url('/AllPoints');
+    // }
 
 }]);

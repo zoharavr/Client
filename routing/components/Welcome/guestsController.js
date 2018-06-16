@@ -12,8 +12,8 @@ guest.service('setHeadersToken', ['$http', function ($http) {
 }])
 
 
-guest.controller('guestsController', ['setID', '$window', '$http', '$location', '$scope', 'localStorageService', 'setHeadersToken',
-    function (setID, $window, $http, $location, $scope, localStorageService, setHeadersToken) {
+guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', '$location', '$scope', 'localStorageService', 'setHeadersToken',
+    function ($rootScope,setID, $window, $http, $location, $scope, localStorageService, setHeadersToken) {
         self = this;
         let serverUrl = 'http://localhost:8080/';
         //get 3 random point to show for the guest
@@ -38,10 +38,6 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
         self.changeToRegPage = function () {
             $location.url('/register');
         };
-        //all POI was clicked
-        self.allPOI = function (){
-            $location.url('/AllPoints');
-        }
         self.login = function () {
             //json objects to send
             //NEED TO ADD CATEGORIES 
@@ -54,8 +50,7 @@ guest.controller('guestsController', ['setID', '$window', '$http', '$location', 
                     if (response.data.success){
                         localStorageService.set('token', response.data.token);
                         setHeadersToken.set(response.data.token);
-                        $scope.userName ={};
-                        $scope.userName=response.data.Username;
+                        $rootScope.userName=response.data.Username;
                         console.log( response.data.Username);
                         $location.url("/Users")
                     }

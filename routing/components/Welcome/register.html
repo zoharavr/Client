@@ -21,7 +21,8 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" name="city" id="inputCity" ng-model="rgsCtrl.City" ng-required="true">
+                <input type="text" class="form-control" name="city" id="inputCity" ng-model="rgsCtrl.City" ng-required="true" ng-pattern="/^[a-zA-Z]+$/">
+                <p ng-show="reg.city.$error.pattern" class="help-block">please enter a valid name </p>
                 <span class="help-block"
                 ng-show="reg.city.$invalid && !reg.city.$untouched">
                     Your city is required.
@@ -54,7 +55,7 @@
                 <p ng-show="reg.password.$error.pattern" class="help-block">Password must contain only letters and digits</p>
                 <span class="help-block"
                 ng-show="reg.password.$invalid && !reg.password.$untouched">
-                    Your passwor dis required.
+                    Your passwor is required.
                 </span>
             </div>
         </div>
@@ -67,11 +68,10 @@
             </span>
         </div>
         <!-- insert here the Categories from the controller! -->
-        <div class="form-row">
+        <div class="form-group">
+            <label>Select at least two categories:   </label>
+      <br>
             <span ng-repeat="c in rgsCtrl.categories ">
-                <!-- <span>
-                        <input type="checkbox" ng-model="c.Selected"  > {{c.Selected}}
-                </span> -->
                 <span>
                     <input type="checkbox" ng-model="c.selected" ng-true-value="'YES'" ng-false-value="'NO'">
                 </span>
@@ -112,6 +112,6 @@
             </div>
         </div>
 
-        <button ng-click="rgsCtrl.reg(reg.$valid)" type="submit" class="btn btn-primary"  >Sign in</button>
+        <button ng-click="rgsCtrl.reg(reg.$valid)" type="submit" class="btn btn-warning mx-auto d-block"  >Sign in</button>
         <!-- ng-disabled="reg.$invalid" -->
 </div>

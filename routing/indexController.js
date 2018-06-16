@@ -1,8 +1,8 @@
 angular.module('citiesApp')
-    .controller('indexController', ['setHeadersToken', '$scope', '$routeParams', '$route', '$location', '$http', 'localStorageService', function (setHeadersToken, $scope, $routeParams, $route, $location, $http, localStorageService) {
+    .controller('indexController', ['$rootScope','setHeadersToken', '$scope', '$routeParams', '$route', '$location', '$http', 'localStorageService', 
+    function ($rootScope,setHeadersToken, $scope, $routeParams, $route, $location, $http, localStorageService) {
 
         self = this;
-        $scope.userName = "guest";
         //if we have a token, move directely to USERS
         var token = localStorageService.get('token');
         setHeadersToken.set(token);
@@ -14,16 +14,16 @@ angular.module('citiesApp')
                 .then(function (response) {
                     console.log(response)
                     if (response.data.success) {
-                        $location.url('/Users');
-                        $scope.userName = {};
-                        $scope.userName=response.data.userName;
-                        
+                        $rootScope.userName = response.data.userName;
+                       // $scope.userName=response.data.userName;
                         console.log(response.data.userName);
+                        $location.url('/Users');
                     }
                 }, function (response) {
                     console.log(response);
                 });
         }
+        else $rootScope.userName="guest"
         $scope.$watch(function () {
             return ($route.current && $route.current.css) ? $route.current.css : 'home.css';
         },

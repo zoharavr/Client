@@ -28,10 +28,12 @@ function ($locationProvider, $routeProvider) {
         .when('/register', {
             templateUrl: 'components/Welcome/register.html',
             controller: 'registerController as rgsCtrl',
+            css:'components/Welcome/style_reg.css'
         })
         .when('/restore',{
             templateUrl:'components/Welcome/passwordRestore.html',
-            controller:'passRestoreController as passRestoreCtrl'
+            controller:'passRestoreController as passRestoreCtrl',
+            css:'components/Welcome/style_guests.css'
         })
         .when('/AllPoints',{
             templateUrl:'components/POI/AllPoints.html',
@@ -41,7 +43,8 @@ function ($locationProvider, $routeProvider) {
         })
         .when('/Users', {
             templateUrl:'components/Users/user.html',
-            controller: 'userController as userCtrl'
+            controller: 'userController as userCtrl',
+            css:'components/Users/user_style.css'
         })
         .otherwise({ redirectTo: '/' });
 
