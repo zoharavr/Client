@@ -59,8 +59,12 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
         $http.post(serverUrl + "register", myObj)
 
             .then(function (response) {
-                console.log(response.data.ans);
-                $location.url('/');
+                if (response.data==="exist") {
+                    alert("user name is exist, please try another user name");
+                }
+                else {
+                    $location.url('/');  
+                }            
             }, function (response) {
                 alert("something went wrong");
             });
