@@ -7,7 +7,7 @@ body, html {
 label{
     color: black;
 }
-.btn{
+#sign_in{
     width: 30%;
     color: black;
     font-size: 18px;

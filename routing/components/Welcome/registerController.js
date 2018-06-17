@@ -25,7 +25,8 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
     self.reg = function (bool) {
         if (self.ver1===self.ver2)
             {
-                alert ('please answer two different questions.');
+                $("#exampleModalCenter").modal('show');
+                self.message='please answer two different questions.'
                 return;
             }
 
@@ -56,7 +57,8 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
        
         if (bool == false || n<2) {
             $("input.ng-invalid").css({ border: "2px solid red" });
-            alert('Please fill out all fields marked with red and make sure you picked at least 2 categories.');
+            $("#exampleModalCenter").modal('show');
+            self.message='Please fill out all fields marked with red and make sure you picked at least 2 categories.';
             return;
         }
         //json objects to send
@@ -69,27 +71,15 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
 
             .then(function (response) {
                 if (response.data==="exist") {
-                    alert("user name is exist, please try another user name");
+                    $("#exampleModalCenter").modal('show');
+                    self.message="user name is exist, please try another user name";
                 }
                 else {
                     $location.url('/');  
                 }            
             }, function (response) {
-                alert("something went wrong");
+                $("#exampleModalCenter").modal('show');
+                self.message="something went wrong";
             });
     }
-    // //validation check
-    // $scope.handlePatternPassword = (function() {
-    //     var regex = /^[A-Za-z0-9!@#$%^&*()_]{4,20}$/;
-    //     return {
-    //       test: function(value) {
-    //         if ($scope.user.isLogged) {
-    //           return (value.length > 0) ? regex.test(value) : true;
-    //         } else {
-    //           return regex.test(value);
-    //         }
-    //       }
-    //     };
-    //   })();
-
 }]);

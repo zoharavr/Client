@@ -51,11 +51,12 @@ guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', 
                         localStorageService.set('token', response.data.token);
                         setHeadersToken.set(response.data.token);
                         $rootScope.userName=response.data.Username;
+                        $rootScope.in=true;
                         console.log( response.data.Username);
                         $location.url("/Users")
                     }
                     else {
-                        alert('Your password or your user name is wrong')
+                        $("#exampleModalCenter").modal('show');
                     }
                    
                 }, function (response) {

@@ -32,7 +32,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search">
+    <tr ng-repeat="p in allPntsCtrl.points| orderBy : selected_column | filter: selected_category | filter:search">
+        <span ng-show="results.length == 0">No results</span>
       <th  scope="row" ><a  href ng-click="allPntsCtrl.forward(p.ID)">{{p.PointName}}</a></th>
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
