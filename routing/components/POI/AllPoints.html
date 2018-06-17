@@ -31,9 +31,10 @@
       <th ng-show="allPntsCtrl.flag" scope="col">Favorites</th>
     </tr>
   </thead>
-  <tbody>
-    <tr ng-repeat="p in allPntsCtrl.points| orderBy : selected_column | filter: selected_category | filter:search">
-        <span ng-show="results.length == 0">No results</span>
+  <tbody>כנל
+    <tr ng-repeat="p in allPntsCtrl.points = (allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search )" >
+        <!-- <span ng-show="allPntsCtrl.points.length == 0">No results</span> -->
+        <div ng-show="!allPntsCtrl.points.length">No POI found for your search</div>
       <th  scope="row" ><a  href ng-click="allPntsCtrl.forward(p.ID)">{{p.PointName}}</a></th>
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
