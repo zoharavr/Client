@@ -1,7 +1,7 @@
 var reg = angular.module('citiesApp');
 reg.controller('registerController', ['$http', '$scope', '$location', function ($http, $scope, $location) {
     self = this;
-    self.questions = ['What is your favorite color?', 'What is your favorite animel?'
+    self.questions = ['What is your favorite color?', 'What is your favorite animal?'
         , 'What is the name of your elementary school?', "What is your favorite food?"];
     self.countries = [];
     self.categories = [{ category: "Sights & Landmraks ", selected: 'NO' }, { category: "Outdoor Activities ", selected: 'NO' },
