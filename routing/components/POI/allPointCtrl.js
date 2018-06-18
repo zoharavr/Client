@@ -1,6 +1,6 @@
 angular.module('citiesApp')
-    .controller('allPointsController', ['setID','$http','$location','localStorageService','$scope', 
-    function (setID,$http,$location,localStorageService,$scope) {
+    .controller('allPointsController', ['commentSrvc','setID','$http','$location','localStorageService','$scope', 
+    function (commentSrvc,setID,$http,$location,localStorageService,$scope) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
         self.favNum=0;
@@ -72,5 +72,7 @@ angular.module('citiesApp')
         self.forward_favor=()=>{
             $location.url('/favorites');
         }
+        self.makeComment=(id)=>
+        commentSrvc.makeComment(self.content,self.selected,id);
     }]);
 

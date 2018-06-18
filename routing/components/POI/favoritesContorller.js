@@ -13,8 +13,7 @@ mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$locati
 
         //redirect to POI page
         self.forward = (id) => {
-            setID.setPointID(id);
-            $location.url("/poi");
+            setID.forward(id);
         }
         //remove point from favorite list
         self.insertinvited = function (p) {
@@ -28,9 +27,28 @@ mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$locati
         }
 
         self.moveDown=(i)=>{
-            console.log(i);
+            if(i<self.allfavs.length-1){
+                let aux=self.allfavs[i+1];
+                self.allfavs[i+1]=self.allfavs[i];
+                self.allfavs[i]=aux;
+            }
+            else {
+                let aux=self.allfavs[0];
+                self.allfavs[0]=self.allfavs[i];
+                self.allfavs[i]=aux;
+            }
         }
         self.moveUp=(i)=>{
-            
+            if(i>0){
+                let aux=self.allfavs[i-1];
+                self.allfavs[i-1]=self.allfavs[i];
+                self.allfavs[i]=aux;
+            }
+            else {
+                let n=self.allfavs.length-1
+                let aux=self.allfavs[n];
+                self.allfavs[n]=self.allfavs[i];
+                self.allfavs[i]=aux;
+            }
         }
     }]);
