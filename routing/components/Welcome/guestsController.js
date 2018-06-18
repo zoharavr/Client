@@ -53,6 +53,7 @@ guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', 
                         $rootScope.in=true;
                         console.log( response.data.Username);
                         $location.url("/Users")
+                        getFavorites(serverUrl);
                     }
                     else {
                         $("#exampleModalCenter").modal('show');
@@ -62,4 +63,16 @@ guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', 
                     console.log(response);
                 });
         };
+        function getFavorites(serverUrl) {
+            $http.get(serverUrl + "Users/Favorites")
+                .then(function (response) {
+                    //for no repeated calls
+                    $rootScope.serverData= response.data;
+                    localStorageService.set('favorites', response.data);
+                }, function (response) {
+                    console.log("error");
+                });
+        }
     }]);
+
+

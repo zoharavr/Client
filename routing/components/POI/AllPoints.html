@@ -20,7 +20,7 @@
     </div>
   </div>
 </form>
-
+<button ng-click="allPntsCtrl.writeChanges()">write to server </button>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -40,7 +40,7 @@
       <td>{{p.Ratings}}</td>
       <td>{{p.Views}}</td>
       <td ng-show="allPntsCtrl.flag" > <label class="switch">
-        <input type="checkbox" ng-model="p.isChecked" ng-change="allPntsCtrl.insertinvited(p)">
+        <input type="checkbox" ng-model="p.isChecked" ng-init="allPntsCtrl.check(p)" ng-change="allPntsCtrl.insertinvited(p)">
         <span class="slider"></span>
       </label> </td>
       <td>   <button ng-show="allPntsCtrl.flag" type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
