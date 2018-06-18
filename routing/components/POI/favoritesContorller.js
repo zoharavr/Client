@@ -26,4 +26,11 @@ mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$locati
                     }
             }
         }
+
+        self.moveDown=(i)=>{
+            console.log(i);
+        }
+        self.moveUp=(i)=>{
+            
+        }
     }]);

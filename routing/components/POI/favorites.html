@@ -1,36 +1,45 @@
-<form>    
-      <div class="form-row">
-        <div class="form-group col-md-3">
-          <label for="inputState">Order By:</label>
-          <select id="inputState" class="form-control" ng-options="item for item in favCtrl.order" ng-model="selected_column">
-          </select>
-        </div>
-        <div class="form-group col-md-3">
-          <label for="inputState">Show by category:</label>
-          <select id="inputState" class="form-control" ng-options="item for item in favCtrl.categories" ng-model="selected_category">
-          </select>
-        </div>
-      </div>
-    </form>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputState">Order By:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in favCtrl.order" ng-model="selected_column">
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Show by category:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in favCtrl.categories" ng-model="selected_category">
+      </select>
+    </div>
+  </div>
+</form>
 
 <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Rating</th>
-            <th  scope="col">Favorites</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="p in favCtrl.allfavs | orderBy : selected_column | filter: selected_category | filter:search">
-            <th  scope="row" ><a  href ng-click="favCtrl.forward(p.ID)">{{p.PointName}}</a></th>
-            <td>{{p.Category}}</td>
-            <td>{{p.Ratings}}</td>
-            <td> <label class="switch">
-                    <input type="checkbox" ng-init="p.isChecked=true" ng-model="p.isChecked" ng-change="favCtrl.insertinvited(p)">
-                    <span class="slider"></span>
-                  </label> </td>
-          </tr>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Switch row</th>
+      <th scope="col">Favorites</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="p in favCtrl.allfavs | orderBy : selected_column | filter: selected_category | filter:search">
+      <th scope="row">
+        <a href ng-click="favCtrl.forward(p.ID)">{{p.PointName}}</a>
+      </th>
+      <td>{{p.Category}}</td>
+      <td>{{p.Ratings}}</td>
+      <td>
+        <button type="button" ng-click="favCtrl.moveDown(favCtrl.allfavs.indexOf(p))" class="btn btn-primary"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" ng-init="p.isChecked=true" ng-model="p.isChecked" ng-change="favCtrl.insertinvited(p)">
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>
+  </tbody>
+</table>

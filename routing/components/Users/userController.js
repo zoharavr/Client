@@ -29,13 +29,7 @@ angular.module('citiesApp').controller('userController', ['$rootScope','$http','
     } 
             // move to POI page
     $scope.navigationUrl = function (id) {
-        setID.setPointID(id);
-        var url = "#/poi";
-        $location.url("/poi");
+        setID.forward(id);
     };
-    //all POI was clicked
-    // self.allPOI = function (){
-    //     $location.url('/AllPoints');
-    // }
 
 }]);

@@ -1,5 +1,6 @@
 angular.module('citiesApp')
-    .controller('allPointsController', ['setID','$http','$location','localStorageService','$scope', function (setID,$http,$location,localStorageService,$scope) {
+    .controller('allPointsController', ['setID','$http','$location','localStorageService','$scope', 
+    function (setID,$http,$location,localStorageService,$scope) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
         self.favNum=0;
@@ -34,9 +35,10 @@ angular.module('citiesApp')
                             console.log(response);
                         });
         //redirect to POI page
+      
             self.forward=(id)=>{
-            setID.setPointID(id);
-            $location.url("/poi");
+            setID.forward(id);
+           // $location.url("/poi/"+id);
         }
 
         self.save= function(id){         

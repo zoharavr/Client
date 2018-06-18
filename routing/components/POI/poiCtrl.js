@@ -1,23 +1,18 @@
 var mainApp = angular.module("citiesApp");
-mainApp.factory('setID', ['localStorageService', function (localStorageService) {
-    var factory = { id: "" };
-
-    factory.setPointID = (id) => {
-        factory.id = id;
+mainApp.service('setID', ['$location', function ($location) {
+    self = this;
+    self.forward = (id) => {
+        $location.url("/poi/" + id);
     }
-    factory.getPointID = () => {
-        return factory.id
-    }
-
-    return factory;
 }]);
-mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function ($http, setID,localStorageService ) {
-    
-    
+mainApp.controller('poiCtrl', ['$routeParams', '$http', 'setID', 'localStorageService', function ($routeParams, $http, setID, localStorageService) {
+
+
     let serverUrl = 'http://localhost:8080/';
     self = this;
- // check if the user is logged in if so show the comment button
-    let token =  localStorageService.get('token');
+    // check if the user is logged in if so show the comment button
+    let token = localStorageService.get('token');
+    var param1 = $routeParams.id;
     var mymap = L.map('mapid').setView([10, 60], 13);
     L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoiem9oYXJhdnIiLCJhIjoiY2ppaGc5NDFtMTVzcTN3dXBnMGVieWl0ciJ9.11y3xDJ-X2_qezzQB_uOYQ', {
       maxZoom: 18,
@@ -26,13 +21,13 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
         'Imagery © <a href="http://mapbox.com">Mapbox</a>',
       id: 'mapbox.streets'
     }).addTo(mymap);
- 
-    if(token != null){
-        self.flag=true
+
+    if (token != null) {
+        self.flag = true
     }
-    else self.flag-false;
-       //get last 2 comments for the point
-    $http.get(serverUrl + "last2comments/" + setID.id)
+    else self.flag - false;
+    //get last 2 comments for the point
+    $http.get(serverUrl + "last2comments/" + param1)
         .then((response) => {
             console.log(response.data);
             self.comments = response.data;
@@ -40,8 +35,8 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
             console.log(response);
         })
 
-    // console.log(setID.getPointID());
-    $http.get(serverUrl + "interestPoint/" + setID.id)
+
+    $http.get(serverUrl + "interestPoint/" + param1)
         .then((response) => {
             self.point = response.data[0];
             console.log(response.data);
@@ -49,27 +44,27 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
             console.log(response);
         });
 
-  
 
-        //user can make a comment about specific poi only once
+
+    //user can make a comment about specific poi only once
     self.make_comment = function () {
         let comment = {
             Comment: self.content,
-            ID: setID.id
+            ID: param1
         }
         let rank = {
             Rank: self.selected,
-            ID: setID.id
+            ID: param1
         }
         $http.post(serverUrl + "Users/Comment", comment)
             .then((response) => {
-                $http.get(serverUrl + "last2comments/" + setID.id)
-                .then((response) => {
-                    console.log(response.data);
-                    self.comments = response.data;
-                }, (response) => {
-                    console.log(response);
-                })
+                $http.get(serverUrl + "last2comments/" + param1)
+                    .then((response) => {
+                        console.log(response.data);
+                        self.comments = response.data;
+                    }, (response) => {
+                        console.log(response);
+                    })
             },
                 (response) => {
                     console.log(response);
@@ -83,6 +78,6 @@ mainApp.controller('poiCtrl', ['$http', 'setID', 'localStorageService', function
                         console.log(response);
                     });
         }
-   
+
     }
 }]);

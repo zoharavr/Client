@@ -31,7 +31,7 @@
       <th ng-show="allPntsCtrl.flag" scope="col">Favorites</th>
     </tr>
   </thead>
-  <tbody>כנל
+  <tbody>
     <tr ng-repeat="p in allPntsCtrl.points = (allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search )" >
         <!-- <span ng-show="allPntsCtrl.points.length == 0">No results</span> -->
         <div ng-show="!allPntsCtrl.points.length">No POI found for your search</div>

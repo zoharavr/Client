@@ -16,7 +16,7 @@ function ($locationProvider, $routeProvider) {
             templateUrl: 'components/About/about.html',
             css: 'components/About/style_about.css'
         })
-        .when('/poi', {
+        .when('/poi/:id', {
             templateUrl: 'components/POI/poi.html',
             controller: 'poiCtrl as poiCtrl',
             css:'components/POI/poi_style.css'

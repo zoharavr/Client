@@ -26,8 +26,7 @@ guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', 
             });
         // move to POI page
         $scope.navigationUrl = function (id) {
-            setID.setPointID(id);
-            $location.url("/poi");
+            setID.forward(id);
         };
        //if we've got token te user shuld see his prsonal page
         var token = localStorageService.get('token');

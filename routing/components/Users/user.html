@@ -8,7 +8,6 @@
     <hr>
     <div class="row">
         <!-- Title -->
-
         <div class="col-lg-4 col-md-4 col-xs-4 thumb" ng-repeat="x in userCtrl.InterestPoint">
             <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)" ng-src="{{x.Ref}}">
             <div class="text">{{x.PointName}}</div>
@@ -24,9 +23,7 @@
                     <br> Click on the image to see more details!
                 </div>
             </div>
-
         </div>
-
     </div>
     <hr>
     <div class="row">
@@ -36,12 +33,12 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-6">
-            <div class="col-lg-4 col-md-4 col-xs-4 thumb" ng-repeat="x in userCtrl.LastSaved">
-                <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)" ng-src="{{x.ref}}">
-                <div class="text">{{x.PointName}}</div>
-            </div>
+        <!-- Title -->
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb" ng-repeat="x in userCtrl.LastSaved">
+            <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)" ng-src="{{x.ref}}">
+            <div class="text">{{x.PointName}}</div>
         </div>
+        <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
             <!-- Side Widget -->
@@ -52,10 +49,7 @@
                     Click on the image to see more details!
                 </div>
             </div>
-
         </div>
-        
     </div>
-
 </div>
 <!-- /.container -->
