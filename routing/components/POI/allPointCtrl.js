@@ -1,10 +1,11 @@
 angular.module('citiesApp')
-    .controller('allPointsController', ['commentSrvc', 'setID', '$http', '$location', 'localStorageService', '$scope','$rootScope',
-        function (commentSrvc, setID, $http, $location, localStorageService, $scope,$rootScope) {
+    .controller('allPointsController', ['commentSrvc', 'setID', '$http', '$location', 'localStorageService', '$scope', '$rootScope',
+        function (commentSrvc, setID, $http, $location, localStorageService, $scope, $rootScope) {
             let serverUrl = 'http://localhost:8080/';
             self = this;
             self.userFavorites = localStorageService.get("favorites");
-            self.favNum = self.userFavorites.length;
+            if (self.userFavorites != null)
+                self.favNum = self.userFavorites.length;
             // check if the user is logged in if so show the comment button
             var token = localStorageService.get('token');
             if (token != null) {
@@ -43,13 +44,16 @@ angular.module('citiesApp')
             }
 
             self.check = function (p) {
-                for (var pid = 0; pid < self.userFavorites.length; pid++) {
-                    if (self.userFavorites[pid].ID === p.ID) {
-                        p.isChecked = true;
-                        return;
+                if (self.userFavorites != null) {
+                    for (var pid = 0; pid < self.userFavorites.length; pid++) {
+                        if (self.userFavorites[pid].ID === p.ID) {
+                            p.isChecked = true;
+                            return;
+                        }
                     }
+                    p.isChecked = false;
                 }
-                p.isChecked = false;
+
             }
             //writes all changes in the local storage into the server
             self.writeChanges = function () {
@@ -57,7 +61,7 @@ angular.module('citiesApp')
                 var server = $rootScope.serverData;
                 deleteAllFromServer(server);
                 writeLocalToServer(local);
-                $rootScope.serverData= local;
+                $rootScope.serverData = local;
             }
             //changes the local storage
             //add to favorites when slider is on remove when off    
@@ -93,8 +97,11 @@ angular.module('citiesApp')
             self.forward_favor = () => {
                 $location.url('/favorites');
             }
-            self.makeComment = (id) =>
-                commentSrvc.makeComment(self.content, self.selected, id);
+            // make a comment
+
+            self.makeComment = () =>
+                commentSrvc.makeComment(self.content, self.selected, self.clicked);
+
             function deleteAllFromServer(server) {
                 for (var x = 0; x < server.length; x++) {
                     $http.delete(serverUrl + "Users/removeInterestPoint/" + server[x].ID)
@@ -119,6 +126,11 @@ angular.module('citiesApp')
                                 console.log(response);
                             });
                 }
+            }
+            //open the modal window to comment
+            self.show = (id) => {
+                $("#commentModal").modal("show");
+                self.clicked = id;
             }
         }]);
 

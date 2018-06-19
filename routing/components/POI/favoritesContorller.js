@@ -1,6 +1,6 @@
 var mainApp = angular.module("citiesApp");
-mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$location',
-    function ($http, setID, localStorageService, $location) {
+mainApp.controller('favCtrl', ['commentSrvc','$http', 'setID', 'localStorageService', '$location',
+    function (commentSrvc,$http, setID, localStorageService, $location) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
         self.categories = ["", "Sights & Landmraks", "Outdoor Activities ", "Museums", "Shopping", "Nightlife"];
@@ -9,7 +9,7 @@ mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$locati
         $http.get(serverUrl + 'Users/Favorites')
             .then((response) => {
                 self.allfavs = response.data;
-            }), (response) => { console.log(response); }
+            }), (response) => { alert("Sorry, you don't have permission for this page, please log in"); }
 
         //redirect to POI page
         self.forward = (id) => {
@@ -26,29 +26,39 @@ mainApp.controller('favCtrl', ['$http', 'setID', 'localStorageService', '$locati
             }
         }
 
-        self.moveDown=(i)=>{
-            if(i<self.allfavs.length-1){
-                let aux=self.allfavs[i+1];
-                self.allfavs[i+1]=self.allfavs[i];
-                self.allfavs[i]=aux;
+        // make the movement of the rows
+        self.moveDown = (i) => {
+            if (i < self.allfavs.length - 1) {
+                let aux = self.allfavs[i + 1];
+                self.allfavs[i + 1] = self.allfavs[i];
+                self.allfavs[i] = aux;
             }
             else {
-                let aux=self.allfavs[0];
-                self.allfavs[0]=self.allfavs[i];
-                self.allfavs[i]=aux;
+                let aux = self.allfavs[0];
+                self.allfavs[0] = self.allfavs[i];
+                self.allfavs[i] = aux;
             }
         }
-        self.moveUp=(i)=>{
-            if(i>0){
-                let aux=self.allfavs[i-1];
-                self.allfavs[i-1]=self.allfavs[i];
-                self.allfavs[i]=aux;
+        self.moveUp = (i) => {
+            if (i > 0) {
+                let aux = self.allfavs[i - 1];
+                self.allfavs[i - 1] = self.allfavs[i];
+                self.allfavs[i] = aux;
             }
             else {
-                let n=self.allfavs.length-1
-                let aux=self.allfavs[n];
-                self.allfavs[n]=self.allfavs[i];
-                self.allfavs[i]=aux;
+                let n = self.allfavs.length - 1
+                let aux = self.allfavs[n];
+                self.allfavs[n] = self.allfavs[i];
+                self.allfavs[i] = aux;
             }
         }
+               //open the modal window to comment
+               self.show = (id) => {
+                $("#commentModal").modal("show");
+                self.clicked = id;
+            }
+            
+            // comment from the page
+            self.makeComment = () =>
+                commentSrvc.makeComment(self.content, self.selected, self.clicked);
     }]);

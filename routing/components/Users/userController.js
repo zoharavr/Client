@@ -9,7 +9,6 @@ angular.module('citiesApp').controller('userController', ['$rootScope','$http','
     $http.get(serverUrl + "Users/2InterestPoint")
     .then(function (response) {    
         self.InterestPoint= response.data;
-        console.log(response.data);
     }, function (response) {
         console.log(response.data);
     }); 
@@ -17,7 +16,9 @@ angular.module('citiesApp').controller('userController', ['$rootScope','$http','
     $http.get(serverUrl + "Users/Last2Saved")
     .then(function (response) {
         self.LastSaved= response.data;
-        console.log(response.data);
+        if( self.LastSaved.length ===0){
+            self.message="Looks like you have not saved favorites points"
+        }
     }, function (response) {
         console.log(response.data);
     });

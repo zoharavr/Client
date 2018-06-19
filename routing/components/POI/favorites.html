@@ -12,7 +12,7 @@
     </div>
   </div>
 </form>
-
+<button ng-click="favCtrl.writeChanges()">write to server </button>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -21,6 +21,7 @@
       <th scope="col">Rating</th>
       <th scope="col">Switch row</th>
       <th scope="col">Favorites</th>
+      <th scope="col">Comment</th>
     </tr>
   </thead>
   <tbody>
@@ -31,8 +32,12 @@
       <td>{{p.Category}}</td>
       <td>{{p.Ratings}}</td>
       <td>
-        <button type="button" ng-click="favCtrl.moveDown(favCtrl.allfavs.indexOf(p))" class="btn btn-primary"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-        <button type="button" ng-click="favCtrl.moveUp(favCtrl.allfavs.indexOf(p))" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+        <button type="button" ng-click="favCtrl.moveDown(favCtrl.allfavs.indexOf(p))" class="btn btn-primary">
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        </button>
+        <button type="button" ng-click="favCtrl.moveUp(favCtrl.allfavs.indexOf(p))" class="btn btn-primary">
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </button>
       </td>
       <td>
         <label class="switch">
@@ -40,6 +45,41 @@
           <span class="slider"></span>
         </label>
       </td>
+      <td> <button  type="button"
+        ng-click="favCtrl.show(p.ID)" data-target="#exampleModalCenter" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+      </button></td>
     </tr>
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Comment here!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="fc">
+              <div class="form-group">
+                <textarea class="form-control" rows="3" name="text" ng-model="favCtrl.content" ng-required="true"></textarea>
+              </div>
+              <hr>
+              <label>Rank the point:</label>
+              <input type="radio" ng-model="favCtrl.selected" name='rank' value="1">1
+              <input type="radio" ng-model="favCtrl.selected" name='rank' value="2">2
+              <input type="radio" ng-model="favCtrl.selected" name='rank' value="3">3
+              <input type="radio" ng-model="favCtrl.selected" name='rank' value="4">4
+              <input type="radio" ng-model="favCtrl.selected" name='rank' value="5">5
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-disabled="fc.text.$invalid" data-dismiss="modal" ng-click="favCtrl.makeComment()">Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </tbody>
 </table>

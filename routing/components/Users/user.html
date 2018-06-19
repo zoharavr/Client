@@ -11,6 +11,7 @@
         <div class="col-lg-4 col-md-4 col-xs-4 thumb" ng-repeat="x in userCtrl.InterestPoint">
             <img style="width:250px; height:250px;" ng-click="navigationUrl(x.ID)" ng-src="{{x.Ref}}">
             <div class="text">{{x.PointName}}</div>
+           
         </div>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
@@ -19,6 +20,7 @@
             <div class="card my-4">
                 <h5 class="card-header">Popular points</h5>
                 <div class="card-body">
+                  
                     The two most popular POIs according to the categories selected when registering.
                     <br> Click on the image to see more details!
                 </div>
@@ -45,8 +47,10 @@
             <div class="card my-4">
                 <h5 class="card-header">Last saved points</h5>
                 <div class="card-body">
+                    {{userCtrl.message}}
+                      <p ng-hide="userCtrl.message"> 
                     The last two points of interest you saved in the system.<br>
-                    Click on the image to see more details!
+                    Click on the image to see more details!</p> 
                 </div>
             </div>
         </div>

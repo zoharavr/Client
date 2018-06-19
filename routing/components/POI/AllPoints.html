@@ -20,7 +20,7 @@
     </div>
   </div>
 </form>
-<button ng-click="allPntsCtrl.writeChanges()">write to server </button>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -29,6 +29,7 @@
       <th scope="col">Rating</th>
       <th scope="col">Views</th>
       <th ng-show="allPntsCtrl.flag" scope="col">Favorites</th>
+      <th ng-show="allPntsCtrl.flag" scope="col">Comment</th>
     </tr>
   </thead>
   <tbody>
@@ -43,10 +44,11 @@
         <input type="checkbox" ng-model="p.isChecked" ng-init="allPntsCtrl.check(p)" ng-change="allPntsCtrl.insertinvited(p)">
         <span class="slider"></span>
       </label> </td>
-      <td>   <button ng-show="allPntsCtrl.flag" type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+      <td>   <button ng-show="allPntsCtrl.flag" type="button"
+        ng-click="allPntsCtrl.show(p.ID)" data-target="#exampleModalCenter" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
       </button></td>
          <!-- Modal -->
-         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +75,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" ng-disabled="fc.text.$invalid" data-dismiss="modal" ng-click="allPntsCtrl.makeComment(p)">Comment</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="fc.text.$invalid" data-dismiss="modal" ng-click="allPntsCtrl.makeComment()">Comment</button>
                 </div>
               </div>
             </div>

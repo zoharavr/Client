@@ -49,7 +49,9 @@ mainApp.controller('poiCtrl', ['commentSrvc','$routeParams', '$http', 'setID', '
 
     //user can make a comment about specific poi only once
     self.make_comment = function () {
-        commentSrvc.makeComment(self.content,self.selected,param1);
+            commentSrvc.makeComment(self.content,self.selected, self.clicked);
+        
+       
 
 
     }
