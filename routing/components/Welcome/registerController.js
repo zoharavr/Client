@@ -1,6 +1,10 @@
 var reg = angular.module('citiesApp');
-reg.controller('registerController', ['$http', '$scope', '$location', function ($http, $scope, $location) {
+reg.controller('registerController', ['localStorageService','$http', '$scope', '$location', function (localStorageService,$http, $scope, $location) {
     self = this;
+    var token=  localStorageService.get("token");
+    if (token != null){
+        $location.url("/");
+    }
     self.questions = ['What is your favorite color?', 'What is your favorite animal?'
         , 'What is the name of your elementary school?', "What is your favorite food?"];
     self.countries = [];
@@ -70,9 +74,13 @@ reg.controller('registerController', ['$http', '$scope', '$location', function (
         $http.post(serverUrl + "register", myObj)
 
             .then(function (response) {
-                if (response.data==="exist") {
+                if (response.data===false) {
                     $("#exampleModalCenter").modal('show');
                     self.message="user name is exist, please try another user name";
+                }
+                else if (response.data.message !=null) {
+                    $("#exampleModalCenter").modal('show');
+                    self.message="pleae enter only valid characters";
                 }
                 else {
                     $location.url('/');  

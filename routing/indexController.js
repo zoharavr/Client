@@ -37,6 +37,7 @@ angular.module('citiesApp')
 
             self.logOut = function () {
                 localStorageService.remove('token');
+                localStorageService.remove('favorites');
                 $rootScope.in=false;
                 $rootScope.userName = "guest";
                 $location.url('/');

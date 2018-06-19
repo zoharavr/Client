@@ -14,7 +14,7 @@ guest.service('setHeadersToken', ['$http', function ($http) {
 
 guest.controller('guestsController', ['$rootScope','setID', '$window', '$http', '$location', '$scope', 'localStorageService', 'setHeadersToken',
     function ($rootScope,setID, $window, $http, $location, $scope, localStorageService, setHeadersToken) {
-        self = this;
+        self = this; 
         let serverUrl = 'http://localhost:8080/';
         //get 3 random point to show for the guest
         $http.get(serverUrl + "3RandomPoints")

@@ -7,7 +7,10 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
         self.order = ["", "Ratings", "PointName"];
         //get all the user's favorite list 
         self.allfavs = localStorageService.get("favorites");
-
+        var token=  localStorageService.get("token");
+        if (token == null){
+            $location.url("/");
+        }
         //redirect to POI page
         self.forward = (id) => {
             setID.forward(id);
@@ -26,11 +29,35 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
         self.writeChanges = function () {
             var local = localStorageService.get("favorites");
             var server = $rootScope.serverData;
-            deleteAllFromServer(server);
-            writeLocalToServer(local);
-            $rootScope.serverData = local;
+            let serverUrl = 'http://localhost:8080/';
+            if (server === undefined) {
+                getFavorites(serverUrl);
+            }
+            else {
+                deleteAllFromServer($rootScope.serverData);
+                firstInsert(local);
+                writeLocalToServer(local);
+                $rootScope.serverData = local;
+                alert('your data is saved');
+            } 
         }
+
         function writeLocalToServer(local) {
+            myObj={
+                Ids:[]
+            }
+            for(let i =0;i<local.length;i++){
+                myObj.Ids.push(local[i].ID);
+            }
+                $http.post(serverUrl + "Users/saveOrderedFavoriteList", myObj)
+                    .then(function (response) {
+                        console.log(response.data);
+                    },
+                        function (response) {
+                            console.log(response);
+                        });
+        }
+        function firstInsert(local) {
             for (var x = 0; x < local.length; x++) {
                 myObj = {
                     "ID": local[x].ID
@@ -43,6 +70,20 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
                             console.log(response);
                         });
             }
+        }
+        function getFavorites(serverUrl) {
+            $http.get(serverUrl + "Users/Favorites")
+                .then(function (response) {
+                    //for no repeated calls
+                    $rootScope.serverData= response.data;
+                    deleteAllFromServer($rootScope.serverData);
+                    firstInsert(localStorageService.get('favorites'));
+                    writeLocalToServer(localStorageService.get('favorites'));
+                    $rootScope.serverData = localStorageService.get('favorites');
+                alert('your data is saved');
+                }, function (response) {
+                    console.log("error");
+                });
         }
         function deleteAllFromServer(server) {
             for (var x = 0; x < server.length; x++) {
@@ -86,6 +127,7 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
         }
                //open the modal window to comment
                self.show = (id) => {
+                $("#text_modal").val("");
                 $("#commentModal").modal("show");
                 self.clicked = id;
             }
