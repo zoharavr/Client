@@ -72,9 +72,22 @@
           <h4>
             <span class="badge badge-pill badge-primary"> Rating: {{poiCtrl.point.Ratings}}% </span>
           </h4>
+   
         </div>
       </div>
       <!-- Side Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Add to favorites</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <span> 
+              <button id-"fav" type="button" class="btn btn-danger" ng-click="poiCtrl.savetolocal()" ng-disabled="poiCtrl.clicked">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /.row -->
 

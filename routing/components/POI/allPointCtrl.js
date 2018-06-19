@@ -20,7 +20,6 @@ angular.module('citiesApp')
             //need to happen imediatlly 
             $http.get(serverUrl + "Points")
                 .then(function (response) {
-                    console.log(response.data);
                     self.points = response.data;
                 },
                     function (response) {
@@ -30,14 +29,13 @@ angular.module('citiesApp')
             $http.get(serverUrl + "Users/Favorites")
                 .then(
                     function (response) {
-                        console.log(response.data);
                         self.favorites = response.data;
                     },
                     function (response) {
                         console.log(response);
                     });
-            //redirect to POI page
 
+            //redirect to POI page
             self.forward = (id) => {
                 setID.forward(id);
                 // $location.url("/poi/"+id);

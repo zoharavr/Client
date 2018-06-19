@@ -61,12 +61,14 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
                 let aux = self.allfavs[i + 1];
                 self.allfavs[i + 1] = self.allfavs[i];
                 self.allfavs[i] = aux;
+                
             }
             else {
                 let aux = self.allfavs[0];
                 self.allfavs[0] = self.allfavs[i];
                 self.allfavs[i] = aux;
             }
+            localStorageService.set("favorites",  self.allfavs);
         }
         self.moveUp = (i) => {
             if (i > 0) {
@@ -80,6 +82,7 @@ mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageSer
                 self.allfavs[n] = self.allfavs[i];
                 self.allfavs[i] = aux;
             }
+            localStorageService.set("favorites",  self.allfavs);
         }
                //open the modal window to comment
                self.show = (id) => {

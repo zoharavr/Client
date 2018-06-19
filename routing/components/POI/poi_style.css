@@ -47,3 +47,10 @@
       margin-left:2%;
   }
   #mapid { height: 180px; }
+  
+#fav{
+ text-align: center;
+}
+.input-group{
+  margin-left: 40%;
+}
