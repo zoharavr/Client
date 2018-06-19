@@ -1,15 +1,12 @@
 var mainApp = angular.module("citiesApp");
-mainApp.controller('favCtrl', ['commentSrvc','$http', 'setID', 'localStorageService', '$location',
-    function (commentSrvc,$http, setID, localStorageService, $location) {
+mainApp.controller('favCtrl', ['commentSrvc', '$http', 'setID', 'localStorageService', '$location','$rootScope',
+    function (commentSrvc, $http, setID, localStorageService, $location, $rootScope) {
         let serverUrl = 'http://localhost:8080/';
         self = this;
         self.categories = ["", "Sights & Landmraks", "Outdoor Activities ", "Museums", "Shopping", "Nightlife"];
         self.order = ["", "Ratings", "PointName"];
         //get all the user's favorite list 
-        $http.get(serverUrl + 'Users/Favorites')
-            .then((response) => {
-                self.allfavs = response.data;
-            }), (response) => { alert("Sorry, you don't have permission for this page, please log in"); }
+        self.allfavs = localStorageService.get("favorites");
 
         //redirect to POI page
         self.forward = (id) => {
@@ -25,7 +22,39 @@ mainApp.controller('favCtrl', ['commentSrvc','$http', 'setID', 'localStorageServ
                     }
             }
         }
-
+        //writes all changes in the local storage into the server
+        self.writeChanges = function () {
+            var local = localStorageService.get("favorites");
+            var server = $rootScope.serverData;
+            deleteAllFromServer(server);
+            writeLocalToServer(local);
+            $rootScope.serverData = local;
+        }
+        function writeLocalToServer(local) {
+            for (var x = 0; x < local.length; x++) {
+                myObj = {
+                    "ID": local[x].ID
+                }
+                $http.post(serverUrl + "Users/saveInterestPoint", myObj)
+                    .then(function (response) {
+                        console.log(response.data);
+                    },
+                        function (response) {
+                            console.log(response);
+                        });
+            }
+        }
+        function deleteAllFromServer(server) {
+            for (var x = 0; x < server.length; x++) {
+                $http.delete(serverUrl + "Users/removeInterestPoint/" + server[x].ID)
+                    .then((response) => {
+                        console.log(response);
+                    }
+                    ), (response) => {
+                        console.log(response);
+                    }
+            }
+        }
         // make the movement of the rows
         self.moveDown = (i) => {
             if (i < self.allfavs.length - 1) {
