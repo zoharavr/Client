@@ -1,0 +1,87 @@
+<form>
+    <button ng-show="allPntsCtrl.flag" type="button" class="btn btn-info" ng-click="allPntsCtrl.forward_favor()">
+        Favorites <span class="badge badge-light">{{allPntsCtrl.favNum}}</span>
+      </button>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Search POI by name:</label>
+      <input type="text" class="form-control" id="inputCity" ng-model="search.PointName">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Order By:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in allPntsCtrl.order" ng-model="selected_column">
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Show by category:</label>
+      <select id="inputState" class="form-control" ng-options="item for item in allPntsCtrl.categories" ng-model="selected_category">
+      </select>
+    </div>
+  </div>
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Views</th>
+      <th ng-show="allPntsCtrl.flag" scope="col">Favorites</th>
+      <th ng-show="allPntsCtrl.flag" scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="p in allPntsCtrl.points | orderBy : selected_column | filter: selected_category | filter:search " >
+        <div ng-show="!allPntsCtrl.points.length">No POI found for your search</div>
+      <th  scope="row" ><a  href ng-click="allPntsCtrl.forward(p.ID)">{{p.PointName}}</a></th>
+      <td>{{p.Category}}</td>
+      <td>{{p.Ratings}}</td>
+      <td>{{p.Views}}</td>
+      <td ng-show="allPntsCtrl.flag" > <label class="switch">
+        <input type="checkbox" ng-model="p.isChecked" ng-init="allPntsCtrl.check(p)" ng-change="allPntsCtrl.insertinvited(p)">
+        <span class="slider"></span>
+      </label> </td>
+      <td>   <button ng-show="allPntsCtrl.flag" type="button"
+        ng-click="allPntsCtrl.show(p.ID)" data-target="#exampleModalCenter" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+      </button></td>
+         <!-- Modal -->
+         <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Comment here!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form name="fc">
+                    <div class="form-group">
+                      <textarea id="text_modal" class="form-control" rows="3" name="text" ng-model="allPntsCtrl.content" ng-required="true"></textarea>
+                    </div>
+                    <hr>
+                    <label>Rank the point:</label>
+                    <input type="radio" ng-model="allPntsCtrl.selected" name='rank' value="1">1
+                    <input type="radio" ng-model="allPntsCtrl.selected" name='rank' value="2">2
+                    <input type="radio" ng-model="allPntsCtrl.selected" name='rank' value="3">3
+                    <input type="radio" ng-model="allPntsCtrl.selected" name='rank' value="4">4
+                    <input type="radio" ng-model="allPntsCtrl.selected" name='rank' value="5">5
+    
+                  </form>
+    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="fc.text.$invalid" data-dismiss="modal" ng-click="allPntsCtrl.makeComment()">Comment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </tr>
+  </tbody>
+    
+ 
+
+</table>
